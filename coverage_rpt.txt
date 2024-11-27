@@ -1,0 +1,1535 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /top/F_if
+=== Design Unit: work.FIFO_if
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         86        84         2    97.67%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /top/F_if --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                       almostempty           1           1      100.00 
+                                        almostfull           1           1      100.00 
+                                               clk           1           1      100.00 
+                                     data_in[15-0]           1           1      100.00 
+                                    data_out[15-0]           1           1      100.00 
+                                             empty           1           0       50.00 
+                                              full           1           1      100.00 
+                                          overflow           1           1      100.00 
+                                             rd_en           1           1      100.00 
+                                             rst_n           0           1       50.00 
+                                         underflow           1           1      100.00 
+                                            wr_ack           1           1      100.00 
+                                             wr_en           1           1      100.00 
+
+Total Node Count     =         43 
+Toggled Node Count   =         41 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      97.67% (84 of 86 bins)
+
+=================================================================================
+=== Instance: /top/f1
+=== Design Unit: work.FIFO
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      12        12         0   100.00%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/top/f1/reset_assert FIFO.sv(80)                        0          1
+/top/f1/count_increment_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/count_decrement_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/underflow_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/overflow_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/wr_ack_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/wr_ptr_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/rd_ptr_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/full_assert  FIFO.sv(134)                       0          1
+/top/f1/empty_assert FIFO.sv(135)                       0          1
+/top/f1/almostfull_assert
+                     FIFO.sv(135)                       0          1
+/top/f1/almostempty_assert
+                     FIFO.sv(135)                       0          1
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        25        25         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /top/f1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO.sv
+------------------------------------IF Branch------------------------------------
+    18                                     20002     Count coming in to IF
+    18              1                          2     	if (!F_if.rst_n) begin
+    24              1                       6016     	else if (F_if.wr_en && count < F_if.FIFO_DEPTH)  begin
+    29              1                      13984     	else begin 
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    33                                     20002     Count coming in to IF
+    33              1                       7950     	if (F_if.full && F_if.wr_en && F_if.rst_n)
+    35              1                      12052     	else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    41                                     20002     Count coming in to IF
+    41              1                          2     	if (!F_if.rst_n) begin
+    46              1                       6008     	else if ( F_if.rd_en && count != 0 ) begin
+                                           13992     All False Count
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    51                                     20002     Count coming in to IF
+    51              1                          1     	if (F_if.rd_en && F_if.empty && F_if.rst_n) begin  // adding the F_if.underflow signal into this block because it's sequential not combinational as it was made.
+    54              1                      20001     	else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    60                                     16028     Count coming in to IF
+    60              1                          2     	if (!F_if.rst_n) begin
+    63              1                      16026     	else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    64                                     16026     Count coming in to IF
+    64              1                       4144     		if	( ( ({F_if.wr_en, F_if.rd_en} == 2'b10) && (!F_if.full) ) || (F_if.wr_en && F_if.rd_en && F_if.empty) ) 
+    66              1                       4136     		else if ( ( ({F_if.wr_en, F_if.rd_en} == 2'b01) && (!F_if.empty) ) || (F_if.wr_en && F_if.rd_en && F_if.full) )
+                                            7746     All False Count
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    71                                      8281     Count coming in to IF
+    71              1                       3392     assign F_if.full        = (count == F_if.FIFO_DEPTH)? 1 : 0;
+    71              2                       4889     assign F_if.full        = (count == F_if.FIFO_DEPTH)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    72                                      8281     Count coming in to IF
+    72              1                          1     assign F_if.empty       = (count == 0)? 1 : 0;
+    72              2                       8280     assign F_if.empty       = (count == 0)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    73                                      8281     Count coming in to IF
+    73              1                       4001     assign F_if.almostfull  = (count == F_if.FIFO_DEPTH-1)? 1 : 0;  // modify the functionality of reset from (count == F_if.FIFO_DEPTH-2) to (count == F_if.FIFO_DEPTH-1) 
+    73              2                       4280     assign F_if.almostfull  = (count == F_if.FIFO_DEPTH-1)? 1 : 0;  // modify the functionality of reset from (count == F_if.FIFO_DEPTH-2) to (count == F_if.FIFO_DEPTH-1) 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    74                                      8281     Count coming in to IF
+    74              1                          1     assign F_if.almostempty = (count == 1)? 1 : 0;
+    74              2                       8280     assign F_if.almostempty = (count == 1)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    79                                     16012     Count coming in to IF
+    79              1                          2     	if(!F_if.rst_n) begin
+                                           16010     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      22        20         2    90.90%
+
+================================Condition Details================================
+
+Condition Coverage for instance /top/f1 --
+
+  File FIFO.sv
+----------------Focused Condition View-------------------
+Line       24 Item    1  (F_if.wr_en && (count < F_if.FIFO_DEPTH))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+                 Input Term   Covered  Reason for no coverage   Hint
+                -----------  --------  -----------------------  --------------
+                 F_if.wr_en         Y
+  (count < F_if.FIFO_DEPTH)         Y
+
+     Rows:       Hits  FEC Target                   Non-masking condition(s)      
+ ---------  ---------  --------------------         -------------------------     
+  Row   1:          1  F_if.wr_en_0                 -                             
+  Row   2:          1  F_if.wr_en_1                 (count < F_if.FIFO_DEPTH)     
+  Row   3:          1  (count < F_if.FIFO_DEPTH)_0  F_if.wr_en                    
+  Row   4:          1  (count < F_if.FIFO_DEPTH)_1  F_if.wr_en                    
+
+----------------Focused Condition View-------------------
+Line       33 Item    1  ((F_if.full && F_if.wr_en) && F_if.rst_n)
+Condition totals: 2 of 3 input terms covered = 66.66%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+   F_if.full         Y
+  F_if.wr_en         Y
+  F_if.rst_n         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  F_if.full_0           -                             
+  Row   2:          1  F_if.full_1           (F_if.rst_n && F_if.wr_en)    
+  Row   3:          1  F_if.wr_en_0          F_if.full                     
+  Row   4:          1  F_if.wr_en_1          (F_if.rst_n && F_if.full)     
+  Row   5:    ***0***  F_if.rst_n_0          (F_if.full && F_if.wr_en)     
+  Row   6:          1  F_if.rst_n_1          (F_if.full && F_if.wr_en)     
+
+----------------Focused Condition View-------------------
+Line       46 Item    1  (F_if.rd_en && (count != 0))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+    F_if.rd_en         Y
+  (count != 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  F_if.rd_en_0          -                             
+  Row   2:          1  F_if.rd_en_1          (count != 0)                  
+  Row   3:          1  (count != 0)_0        F_if.rd_en                    
+  Row   4:          1  (count != 0)_1        F_if.rd_en                    
+
+----------------Focused Condition View-------------------
+Line       51 Item    1  ((F_if.rd_en && F_if.empty) && F_if.rst_n)
+Condition totals: 3 of 3 input terms covered = 100.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+  F_if.rd_en         Y
+  F_if.empty         Y
+  F_if.rst_n         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  F_if.rd_en_0          -                             
+  Row   2:          1  F_if.rd_en_1          (F_if.rst_n && F_if.empty)    
+  Row   3:          1  F_if.empty_0          F_if.rd_en                    
+  Row   4:          1  F_if.empty_1          (F_if.rst_n && F_if.rd_en)    
+  Row   5:          1  F_if.rst_n_0          (F_if.rd_en && F_if.empty)    
+  Row   6:          1  F_if.rst_n_1          (F_if.rd_en && F_if.empty)    
+
+-----------Focused Condition View (Bimodal)--------------
+Line       64 Item    1  (((~F_if.rd_en && F_if.wr_en) && ~F_if.full) || ((F_if.wr_en && F_if.rd_en) && F_if.empty))
+Condition totals: 4 of 4 input terms covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage                  Hint
+   -----------  --------  --------------------------------------  --------------
+    F_if.rd_en         Y
+    F_if.wr_en         Y
+     F_if.full         Y
+    F_if.empty         Y
+
+    Rows:   Hits(->0)   Hits(->1)  FEC Target            Non-masking condition(s)                                                                
+
+---------  ----------  ----------  --------------------  -------------------------                                                               
+ Row   1:           0           1  F_if.rd_en_0          (~F_if.full && F_if.wr_en), (~((~F_if.rd_en && F_if.wr_en) && ~F_if.full) && F_if.wr_en)
+ Row   2:           1           1  F_if.rd_en_1          ~((F_if.wr_en && F_if.rd_en) && F_if.empty), (F_if.empty && F_if.wr_en)                 
+ Row   3:           1           0  F_if.wr_en_0          ~F_if.rd_en                                                                             
+ Row   4:           0           1  F_if.wr_en_1          (~F_if.full && ~F_if.rd_en), (F_if.empty && F_if.rd_en)                                 
+ Row   5:           0           1  F_if.full_0           (~F_if.rd_en && F_if.wr_en)                                                             
+ Row   6:           1           0  F_if.full_1           (~((F_if.wr_en && F_if.rd_en) && F_if.empty) && (~F_if.rd_en && F_if.wr_en))            
+ Row   7:           1           0  F_if.empty_0          (~((~F_if.rd_en && F_if.wr_en) && ~F_if.full) && (F_if.wr_en && F_if.rd_en))            
+ Row   8:           0           1  F_if.empty_1          (~((~F_if.rd_en && F_if.wr_en) && ~F_if.full) && (F_if.wr_en && F_if.rd_en))            
+
+-----------Focused Condition View (Bimodal)--------------
+Line       66 Item    1  (((F_if.rd_en && ~F_if.wr_en) && ~F_if.empty) || ((F_if.wr_en && F_if.rd_en) && F_if.full))
+Condition totals: 3 of 4 input terms covered = 75.00%
+
+    Input Term   Covered  Reason for no coverage                  Hint
+   -----------  --------  --------------------------------------  --------------
+    F_if.rd_en         Y
+    F_if.wr_en         Y
+    F_if.empty         N  '_0' hit but '_1' is not hit           Hit '_1' for output ->0
+     F_if.full         Y
+
+    Rows:   Hits(->0)   Hits(->1)  FEC Target            Non-masking condition(s)                                                             
+
+---------  ----------  ----------  --------------------  -------------------------                                                            
+ Row   1:           1           0  F_if.rd_en_0          F_if.wr_en                                                                           
+ Row   2:           0           1  F_if.rd_en_1          (~F_if.empty && ~F_if.wr_en), (F_if.full && F_if.wr_en)                              
+ Row   3:           1           1  F_if.wr_en_0          (~F_if.empty && F_if.rd_en), ~((F_if.rd_en && ~F_if.wr_en) && ~F_if.empty)           
+ Row   4:           1           0  F_if.wr_en_1          (~((F_if.wr_en && F_if.rd_en) && F_if.full) && F_if.rd_en), (F_if.full && F_if.rd_en)
+ Row   5:           0           1  F_if.empty_0          (F_if.rd_en && ~F_if.wr_en)                                                          
+ Row   6:           0           0  F_if.empty_1          (~((F_if.wr_en && F_if.rd_en) && F_if.full) && (F_if.rd_en && ~F_if.wr_en))          
+ Row   7:           1           0  F_if.full_0           (~((F_if.rd_en && ~F_if.wr_en) && ~F_if.empty) && (F_if.wr_en && F_if.rd_en))        
+ Row   8:           0           1  F_if.full_1           (~((F_if.rd_en && ~F_if.wr_en) && ~F_if.empty) && (F_if.wr_en && F_if.rd_en))        
+
+----------------Focused Condition View-------------------
+Line       71 Item    1  (count == F_if.FIFO_DEPTH)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+                  Input Term   Covered  Reason for no coverage   Hint
+                 -----------  --------  -----------------------  --------------
+  (count == F_if.FIFO_DEPTH)         Y
+
+     Rows:       Hits  FEC Target                    Non-masking condition(s)      
+ ---------  ---------  --------------------          -------------------------     
+  Row   1:          1  (count == F_if.FIFO_DEPTH)_0  -                             
+  Row   2:          1  (count == F_if.FIFO_DEPTH)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       72 Item    1  (count == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (count == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (count == 0)_0        -                             
+  Row   2:          1  (count == 0)_1        -                             
+
+----------------Focused Condition View-------------------
+Line       73 Item    1  (count == (F_if.FIFO_DEPTH - 1))
+Condition totals: 1 of 1 input term covered = 100.00%
+
+                        Input Term   Covered  Reason for no coverage   Hint
+                       -----------  --------  -----------------------  --------------
+  (count == (F_if.FIFO_DEPTH - 1))         Y
+
+     Rows:       Hits  FEC Target                          Non-masking condition(s)      
+ ---------  ---------  --------------------                -------------------------     
+  Row   1:          1  (count == (F_if.FIFO_DEPTH - 1))_0  -                             
+  Row   2:          1  (count == (F_if.FIFO_DEPTH - 1))_1  -                             
+
+----------------Focused Condition View-------------------
+Line       74 Item    1  (count == 1)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (count == 1)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (count == 1)_0        -                             
+  Row   2:          1  (count == 1)_1        -                             
+
+
+
+Directive Coverage:
+    Directives                      11        11         0   100.00%
+
+DIRECTIVE COVERAGE:
+--------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Hits Status    
+                                         Unit   UnitType                                     
+--------------------------------------------------------------------------------------------
+/top/f1/cover__pr11                      FIFO   Verilog  SVA  FIFO.sv(138)       2 Covered   
+/top/f1/cover__pr10                      FIFO   Verilog  SVA  FIFO.sv(138)    7005 Covered   
+/top/f1/cover__pr9                       FIFO   Verilog  SVA  FIFO.sv(138)       2 Covered   
+/top/f1/cover__pr8                       FIFO   Verilog  SVA  FIFO.sv(138)    11415 Covered   
+/top/f1/cover__pr7                       FIFO   Verilog  SVA  FIFO.sv(137)    6008 Covered   
+/top/f1/cover__pr6                       FIFO   Verilog  SVA  FIFO.sv(137)    6015 Covered   
+/top/f1/cover__pr5                       FIFO   Verilog  SVA  FIFO.sv(137)    6015 Covered   
+/top/f1/cover__pr4                       FIFO   Verilog  SVA  FIFO.sv(137)    7950 Covered   
+/top/f1/cover__pr3                       FIFO   Verilog  SVA  FIFO.sv(137)       1 Covered   
+/top/f1/cover__pr2                       FIFO   Verilog  SVA  FIFO.sv(137)    4136 Covered   
+/top/f1/cover__pr1                       FIFO   Verilog  SVA  FIFO.sv(137)    4143 Covered   
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      26        26         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /top/f1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO.sv
+    8                                                module FIFO(FIFO_if.DUT F_if);
+    9                                                
+    10                                               localparam max_fifo_addr = $clog2(F_if.FIFO_DEPTH);
+    11                                               
+    12                                               reg [F_if.FIFO_WIDTH-1:0] mem [F_if.FIFO_DEPTH-1:0];
+    13                                               
+    14                                               reg [max_fifo_addr-1:0] wr_ptr, rd_ptr;
+    15                                               reg [max_fifo_addr:0] count;
+    16                                               
+    17              1                      20002     always @(posedge F_if.clk or negedge F_if.rst_n) begin
+    18                                               	if (!F_if.rst_n) begin
+    19              1                          2     		wr_ptr <= 0;
+    20              1                          2     		F_if.wr_ack   <= 0; //reset the value of wr_ack flag
+    21              1                          2     		F_if.overflow <= 0; //reset the value of overflow flag
+    22                                               
+    23                                               	end
+    24                                               	else if (F_if.wr_en && count < F_if.FIFO_DEPTH)  begin
+    25              1                       6016     		mem[wr_ptr] <= F_if.data_in;
+    26              1                       6016     		F_if.wr_ack <= 1;
+    27              1                       6016     		wr_ptr <= wr_ptr + 1;
+    28                                               	end
+    29                                               	else begin 
+    30              1                      13984     		F_if.wr_ack <= 0; 
+    31                                               	end
+    32                                               
+    33                                               	if (F_if.full && F_if.wr_en && F_if.rst_n)
+    34              1                       7950     		F_if.overflow <= 1;
+    35                                               	else
+    36              1                      12052     		F_if.overflow <= 0;
+    37                                               	
+    38                                               end
+    39                                               
+    40              1                      20002     always @(posedge F_if.clk or negedge F_if.rst_n) begin
+    41                                               	if (!F_if.rst_n) begin
+    42              1                          2     		rd_ptr <= 0;
+    43              1                          2     		F_if.underflow <= 0; //reset the underflow flag
+    44                                               
+    45                                               	end
+    46                                               	else if ( F_if.rd_en && count != 0 ) begin
+    47              1                       6008     		F_if.data_out <= mem[rd_ptr];                                                       
+    48              1                       6008     		rd_ptr <= rd_ptr + 1;
+    49                                               	end
+    50                                               
+    51                                               	if (F_if.rd_en && F_if.empty && F_if.rst_n) begin  // adding the F_if.underflow signal into this block because it's sequential not combinational as it was made.
+    52              1                          1     		F_if.underflow <= 1;
+    53                                               	end
+    54                                               	else begin
+    55              1                      20001     		F_if.underflow <= 0;
+    56                                               	end 
+    57                                               end
+    58                                               
+    59              1                      16028     always @(posedge F_if.clk or negedge F_if.rst_n) begin
+    60                                               	if (!F_if.rst_n) begin
+    61              1                          2     		count <= 0;
+    62                                               	end
+    63                                               	else begin
+    64                                               		if	( ( ({F_if.wr_en, F_if.rd_en} == 2'b10) && (!F_if.full) ) || (F_if.wr_en && F_if.rd_en && F_if.empty) ) 
+    65              1                       4144     			count <= count + 1;
+    66                                               		else if ( ( ({F_if.wr_en, F_if.rd_en} == 2'b01) && (!F_if.empty) ) || (F_if.wr_en && F_if.rd_en && F_if.full) )
+    67              1                       4136     			count <= count - 1;
+    68                                               	end
+    69                                               end
+    70                                               
+    71              1                       8282     assign F_if.full        = (count == F_if.FIFO_DEPTH)? 1 : 0;
+    72              1                       8282     assign F_if.empty       = (count == 0)? 1 : 0;
+    73              1                       8282     assign F_if.almostfull  = (count == F_if.FIFO_DEPTH-1)? 1 : 0;  // modify the functionality of reset from (count == F_if.FIFO_DEPTH-2) to (count == F_if.FIFO_DEPTH-1) 
+    74              1                       8282     assign F_if.almostempty = (count == 1)? 1 : 0;
+    75                                               
+    76                                               
+    77              1                      16012     always_comb begin
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         20        20         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /top/f1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                        count[3-0]           1           1      100.00 
+                                       rd_ptr[2-0]           1           1      100.00 
+                                       wr_ptr[2-0]           1           1      100.00 
+
+Total Node Count     =         10 
+Toggled Node Count   =         10 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (20 of 20 bins)
+
+=================================================================================
+=== Instance: /top/tb1
+=== Design Unit: work.FIFO_tb
+=================================================================================
+
+Assertion Coverage:
+    Assertions                       1         1         0   100.00%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/top/tb1/#ublk#182146786#17/immed__19
+                     FIFO_tb.sv(19)                     0          1
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      14        14         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /top/tb1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_tb.sv
+    4                                                module FIFO_tb (FIFO_if.TEST F_if);
+    5                                                
+    6               1                          1     	FIFO_transaction trans1 = new();
+    7                                                	initial begin
+    8                                                		
+    9               1                          1     		F_if.wr_en = $random; F_if.rd_en = $random; F_if.data_in = $random;
+    9               2                          1     
+    9               3                          1     
+    10              1                          1     		F_if.rst_n = 0;
+    11                                               		
+    12              1                          1     		@(negedge F_if.clk);
+    13              1                          1     		@(negedge F_if.clk);
+    14                                               
+    15              1                          1     		F_if.rst_n = 1;
+    16                                               
+    17              1                      20000     		repeat(20000) begin
+    18                                               
+    19                                               			assert(trans1.randomize());
+    20                                               
+    21              1                      20000     			F_if.wr_en   = trans1.wr_en;
+    22              1                      20000     			F_if.rd_en   = trans1.rd_en;
+    23              1                      20000     			F_if.data_in = trans1.data_in;
+    24                                               
+    25              1                      20000     			@(negedge F_if.clk);
+    26                                               
+    27                                               		end
+    28                                               
+    29              1                          1     		test_finished = 1;
+
+
+=================================================================================
+=== Instance: /top/m1
+=== Design Unit: work.FIFO_monitor
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /top/m1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_monitor.sv
+------------------------------------IF Branch------------------------------------
+    61                                     20001     Count coming in to IF
+    61              1                          1     		if (test_finished == 1) begin
+                                           20000     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      35        35         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /top/m1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_monitor.sv
+    6                                                module FIFO_monitor(FIFO_if.MONITOR F_if);
+    7                                                
+    8                                                FIFO_transaction transaction1;
+    9                                                FIFO_coverage coverage1;
+    10                                               FIFO_scoreboard scoreboard1;
+    11                                               
+    12                                               logic [F_if.FIFO_WIDTH-1:0] data_in;
+    13                                               logic clk, rst_n, wr_en, rd_en;
+    14                                               logic [F_if.FIFO_WIDTH-1:0] data_out;
+    15                                               logic wr_ack, overflow;
+    16                                               logic full, empty, almostfull, almostempty, underflow;
+    17                                               
+    18              1                      20001     assign data_in=F_if.data_in;
+    19              1                      40004     assign clk = F_if.clk;
+    20              1                          2     assign rst_n=F_if.rst_n;
+    21              1                       8432     assign wr_en = F_if.wr_en;
+    22              1                       8390     assign rd_en = F_if.rd_en;
+    23              1                       6008     assign data_out = F_if.data_out;
+    24              1                       8361     assign wr_ack = F_if.wr_ack;
+    25              1                       8102     assign overflow = F_if.overflow;
+    26              1                       6785     assign full = F_if.full;
+    27              1                          3     assign empty = F_if.empty;
+    28              1                       8004     assign almostfull = F_if.almostfull;
+    29              1                          4     assign almostempty = F_if.almostempty;
+    30              1                          4     assign underflow = F_if.underflow;
+    31                                               
+    32                                               initial begin
+    33                                               
+    34              1                          1     	transaction1 = new();
+    35              1                          1     	coverage1    = new();
+    36              1                          1     	scoreboard1  = new();
+    37                                               
+    38              1                          1     	@(negedge F_if.clk);
+    39                                               
+    40              1                          1     	forever begin
+    41                                               		
+    42              1                      20001     		@(negedge F_if.clk);
+    43                                               
+    44              1                      20001     		transaction1.rst_n = rst_n; transaction1.wr_en = wr_en; transaction1.rd_en = rd_en; transaction1.data_in = data_in;
+    44              2                      20001     
+    44              3                      20001     
+    44              4                      20001     
+    45              1                      20001     		transaction1.data_out = data_out; transaction1.wr_ack = wr_ack; transaction1.full = full; transaction1.empty = empty;
+    45              2                      20001     
+    45              3                      20001     
+    45              4                      20001     
+    46              1                      20001     		transaction1.almostfull = almostfull; transaction1.almostempty = almostempty; transaction1.overflow = overflow; transaction1.underflow = underflow;
+    46              2                      20001     
+    46              3                      20001     
+    46              4                      20001     
+    47                                               
+    48                                               
+    49                                               		fork
+    50                                               
+    51                                               			begin
+    52              1                      20001     				coverage1.sample_data(transaction1);
+    53                                               			end
+    54                                               
+    55                                               			begin
+    56              1                      20001     				scoreboard1.check_data(transaction1);
+    57                                               			end
+    58                                               
+    59                                               		join
+    60                                               
+    61                                               		if (test_finished == 1) begin
+    62              1                          1     			$display("At the End : error_count is: %0d and correct_count is: %0d", error_count, correct_count);
+    63              1                          1     			$stop;
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         86        84         2    97.67%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /top/m1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                       almostempty           1           1      100.00 
+                                        almostfull           1           1      100.00 
+                                               clk           1           1      100.00 
+                                     data_in[15-0]           1           1      100.00 
+                                    data_out[15-0]           1           1      100.00 
+                                             empty           1           0       50.00 
+                                              full           1           1      100.00 
+                                          overflow           1           1      100.00 
+                                             rd_en           1           1      100.00 
+                                             rst_n           0           1       50.00 
+                                         underflow           1           1      100.00 
+                                            wr_ack           1           1      100.00 
+                                             wr_en           1           1      100.00 
+
+Total Node Count     =         43 
+Toggled Node Count   =         41 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      97.67% (84 of 86 bins)
+
+=================================================================================
+=== Instance: /top
+=== Design Unit: work.top
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       4         4         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /top --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_top.sv
+    1                                                module top();
+    2                                                
+    3                                                bit clk;
+    4                                                
+    5                                                initial begin
+    6               1                          1     	clk = 0;
+    7               1                          1     	forever 
+    8               1                      40003     		#5 clk = ~clk;
+    8               2                      40002     
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                          2         2         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /top --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               clk           1           1      100.00 
+
+Total Node Count     =          1 
+Toggled Node Count   =          1 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (2 of 2 bins)
+
+=================================================================================
+=== Instance: /FIFO_transaction_pkg
+=== Design Unit: work.FIFO_transaction_pkg
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /FIFO_transaction_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_transaction.sv
+    1                                                package FIFO_transaction_pkg;
+    2                                                
+    3                                                class FIFO_transaction;
+    4                                                
+    5                                                parameter FIFO_WIDTH = 16; 
+    6                                                parameter FIFO_DEPTH = 8;
+    7                                                
+    8                                                rand logic [FIFO_WIDTH-1:0] data_in;
+    9                                                rand logic rst_n, wr_en, rd_en;
+    10                                               logic [FIFO_WIDTH-1:0] data_out;
+    11                                               logic wr_ack, overflow;
+    12                                               logic full, empty, almostfull, almostempty, underflow;
+    13                                               
+    14                                               integer RD_EN_ON_DIST, WR_EN_ON_DIST;
+    15                                               
+    16                                               function new(integer RD_EN_ON_DIST = 30, integer WR_EN_ON_DIST = 70);
+    17              1                          2     	this.RD_EN_ON_DIST = RD_EN_ON_DIST;
+    18              1                          2     	this.WR_EN_ON_DIST = WR_EN_ON_DIST;
+
+
+=================================================================================
+=== Instance: /FIFO_scoreboard_pkg
+=== Design Unit: work.FIFO_scoreboard_pkg
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        23        22         1    95.65%
+
+================================Branch Details================================
+
+Branch Coverage for instance /FIFO_scoreboard_pkg
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_scoreboard.sv
+------------------------------------IF Branch------------------------------------
+    25                                     20001     Count coming in to IF
+    25              1                    ***0***     			if(data_out_ref !== F_chk.data_out || wr_ack_ref !== F_chk.wr_ack || overflow_ref !== F_chk.overflow || underflow_ref !== F_chk.underflow 
+    36              1                      20001     			else begin
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    44                                     20001     Count coming in to IF
+    44              1                          1     			if (!F_ref.rst_n) begin
+    48              1                      20000     			else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    50                                     20000     Count coming in to IF
+    50              1                       6016     				if(F_ref.wr_en && count_ref < F_ref.FIFO_DEPTH)  begin
+    55              1                      13984     				else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    59                                     20000     Count coming in to IF
+    59              1                       7950     				if (full_ref && F_ref.wr_en && F_ref.rst_n)
+    61              1                      12050     				else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    66                                     20000     Count coming in to IF
+    66              1                       6008     				if(F_ref.rd_en && count_ref != 0)  begin 
+                                           13992     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    71                                     20000     Count coming in to IF
+    71              1                          1     				if (F_ref.rd_en && empty_ref && F_ref.rst_n)  
+    73              1                      19999     				else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    78                                     20000     Count coming in to IF
+    78              1                       4144     				if( ( ({F_ref.wr_en, F_ref.rd_en} == 2'b10) && (!full_ref) ) || (F_ref.wr_en && F_ref.rd_en && empty_ref) ) begin
+    81              1                       4136     				else if( ( ({F_ref.wr_en, F_ref.rd_en} == 2'b01) && (!empty_ref) ) || (F_ref.wr_en && F_ref.rd_en && full_ref) ) begin
+                                           11720     All False Count
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    87                                     20001     Count coming in to IF
+    87              1                      11416     			full_ref        = (count_ref == F_ref.FIFO_DEPTH)? 1 : 0;
+    87              2                       8585     			full_ref        = (count_ref == F_ref.FIFO_DEPTH)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    88                                     20001     Count coming in to IF
+    88              1                          1     			empty_ref       = (count_ref == 0)? 1 : 0;
+    88              2                      20000     			empty_ref       = (count_ref == 0)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    89                                     20001     Count coming in to IF
+    89              1                       7005     			almostfull_ref  = (count_ref == F_ref.FIFO_DEPTH-1)? 1 : 0;
+    89              2                      12996     			almostfull_ref  = (count_ref == F_ref.FIFO_DEPTH-1)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    90                                     20001     Count coming in to IF
+    90              1                          2     		    almostempty_ref = (count_ref == 1)? 1 : 0;
+    90              2                      19999     		    almostempty_ref = (count_ref == 1)? 1 : 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      30        19        11    63.33%
+
+================================Condition Details================================
+
+Condition Coverage for instance /FIFO_scoreboard_pkg --
+
+  File FIFO_scoreboard.sv
+----------------Focused Condition View-------------------
+Line       25 Item    1  ((this.data_out_ref !== F_chk.data_out) || (this.wr_ack_ref !== F_chk.wr_ack) || (this.overflow_ref !== F_chk.overflow) || (this.underflow_ref !== F_chk.underflow) || (this.full_ref !== F_chk.full) || (this.empty_ref !== F_chk.empty) || (this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty))
+Condition totals: 0 of 8 input terms covered = 0.00%
+
+                                    Input Term   Covered  Reason for no coverage   Hint
+                                   -----------  --------  -----------------------  --------------
+        (this.data_out_ref !== F_chk.data_out)         N  '_1' not hit             Hit '_1'
+            (this.wr_ack_ref !== F_chk.wr_ack)         N  '_1' not hit             Hit '_1'
+        (this.overflow_ref !== F_chk.overflow)         N  '_1' not hit             Hit '_1'
+      (this.underflow_ref !== F_chk.underflow)         N  '_1' not hit             Hit '_1'
+                (this.full_ref !== F_chk.full)         N  '_1' not hit             Hit '_1'
+              (this.empty_ref !== F_chk.empty)         N  '_1' not hit             Hit '_1'
+    (this.almostfull_ref !== F_chk.almostfull)         N  '_1' not hit             Hit '_1'
+  (this.almostempty_ref !== F_chk.almostempty)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                                      Non-masking condition(s)      
+ ---------  ---------  --------------------                            -------------------------     
+  Row   1:          1  (this.data_out_ref !== F_chk.data_out)_0        ~((this.wr_ack_ref !== F_chk.wr_ack) || ((this.overflow_ref !== F_chk.overflow) || ((this.underflow_ref !== F_chk.underflow) || ((this.full_ref !== F_chk.full) || ((this.empty_ref !== F_chk.empty) || ((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty)))))))
+  Row   2:    ***0***  (this.data_out_ref !== F_chk.data_out)_1        -                             
+  Row   3:          1  (this.wr_ack_ref !== F_chk.wr_ack)_0            (~(this.data_out_ref !== F_chk.data_out) && ~((this.overflow_ref !== F_chk.overflow) || ((this.underflow_ref !== F_chk.underflow) || ((this.full_ref !== F_chk.full) || ((this.empty_ref !== F_chk.empty) || ((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty)))))))
+  Row   4:    ***0***  (this.wr_ack_ref !== F_chk.wr_ack)_1            ~(this.data_out_ref !== F_chk.data_out)
+  Row   5:          1  (this.overflow_ref !== F_chk.overflow)_0        (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~((this.underflow_ref !== F_chk.underflow) || ((this.full_ref !== F_chk.full) || ((this.empty_ref !== F_chk.empty) || ((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty))))))
+  Row   6:    ***0***  (this.overflow_ref !== F_chk.overflow)_1        (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack))
+  Row   7:          1  (this.underflow_ref !== F_chk.underflow)_0      (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~((this.full_ref !== F_chk.full) || ((this.empty_ref !== F_chk.empty) || ((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty)))))
+  Row   8:    ***0***  (this.underflow_ref !== F_chk.underflow)_1      (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow))
+  Row   9:          1  (this.full_ref !== F_chk.full)_0                (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~((this.empty_ref !== F_chk.empty) || ((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty))))
+ Row   10:    ***0***  (this.full_ref !== F_chk.full)_1                (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow))
+ Row   11:          1  (this.empty_ref !== F_chk.empty)_0              (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full) && ~((this.almostfull_ref !== F_chk.almostfull) || (this.almostempty_ref !== F_chk.almostempty)))
+ Row   12:    ***0***  (this.empty_ref !== F_chk.empty)_1              (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full))
+ Row   13:          1  (this.almostfull_ref !== F_chk.almostfull)_0    (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full) && ~(this.empty_ref !== F_chk.empty) && ~(this.almostempty_ref !== F_chk.almostempty))
+ Row   14:    ***0***  (this.almostfull_ref !== F_chk.almostfull)_1    (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full) && ~(this.empty_ref !== F_chk.empty))
+ Row   15:          1  (this.almostempty_ref !== F_chk.almostempty)_0  (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full) && ~(this.empty_ref !== F_chk.empty) && ~(this.almostfull_ref !== F_chk.almostfull))
+ Row   16:    ***0***  (this.almostempty_ref !== F_chk.almostempty)_1  (~(this.data_out_ref !== F_chk.data_out) && ~(this.wr_ack_ref !== F_chk.wr_ack) && ~(this.overflow_ref !== F_chk.overflow) && ~(this.underflow_ref !== F_chk.underflow) && ~(this.full_ref !== F_chk.full) && ~(this.empty_ref !== F_chk.empty) && ~(this.almostfull_ref !== F_chk.almostfull))
+
+----------------Focused Condition View-------------------
+Line       50 Item    1  (F_ref.wr_en && (this.count_ref < 8))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+            Input Term   Covered  Reason for no coverage   Hint
+           -----------  --------  -----------------------  --------------
+           F_ref.wr_en         Y
+  (this.count_ref < 8)         Y
+
+     Rows:       Hits  FEC Target              Non-masking condition(s)      
+ ---------  ---------  --------------------    -------------------------     
+  Row   1:          1  F_ref.wr_en_0           -                             
+  Row   2:          1  F_ref.wr_en_1           (this.count_ref < 8)          
+  Row   3:          1  (this.count_ref < 8)_0  F_ref.wr_en                   
+  Row   4:          1  (this.count_ref < 8)_1  F_ref.wr_en                   
+
+----------------Focused Condition View-------------------
+Line       59 Item    1  (this.full_ref && F_ref.wr_en && F_ref.rst_n)
+Condition totals: 2 of 3 input terms covered = 66.66%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  this.full_ref         Y
+    F_ref.wr_en         Y
+    F_ref.rst_n         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  this.full_ref_0       -                             
+  Row   2:          1  this.full_ref_1       (F_ref.wr_en && F_ref.rst_n)  
+  Row   3:          1  F_ref.wr_en_0         this.full_ref                 
+  Row   4:          1  F_ref.wr_en_1         (this.full_ref && F_ref.rst_n)
+  Row   5:    ***0***  F_ref.rst_n_0         (this.full_ref && F_ref.wr_en)
+  Row   6:          1  F_ref.rst_n_1         (this.full_ref && F_ref.wr_en)
+
+----------------Focused Condition View-------------------
+Line       66 Item    1  (F_ref.rd_en && (this.count_ref != 0))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+            F_ref.rd_en         Y
+  (this.count_ref != 0)         Y
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  F_ref.rd_en_0            -                             
+  Row   2:          1  F_ref.rd_en_1            (this.count_ref != 0)         
+  Row   3:          1  (this.count_ref != 0)_0  F_ref.rd_en                   
+  Row   4:          1  (this.count_ref != 0)_1  F_ref.rd_en                   
+
+----------------Focused Condition View-------------------
+Line       71 Item    1  (F_ref.rd_en && this.empty_ref && F_ref.rst_n)
+Condition totals: 2 of 3 input terms covered = 66.66%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+     F_ref.rd_en         Y
+  this.empty_ref         Y
+     F_ref.rst_n         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  F_ref.rd_en_0         -                             
+  Row   2:          1  F_ref.rd_en_1         (this.empty_ref && F_ref.rst_n)
+  Row   3:          1  this.empty_ref_0      F_ref.rd_en                   
+  Row   4:          1  this.empty_ref_1      (F_ref.rd_en && F_ref.rst_n)  
+  Row   5:    ***0***  F_ref.rst_n_0         (F_ref.rd_en && this.empty_ref)
+  Row   6:          1  F_ref.rst_n_1         (F_ref.rd_en && this.empty_ref)
+
+-----------Focused Condition View (Bimodal)--------------
+Line       78 Item    1  ((~F_ref.rd_en && F_ref.wr_en && ~this.full_ref) || (F_ref.wr_en && F_ref.rd_en && this.empty_ref))
+Condition totals: 4 of 4 input terms covered = 100.00%
+
+        Input Term   Covered  Reason for no coverage                  Hint
+       -----------  --------  --------------------------------------  --------------
+       F_ref.rd_en         Y
+       F_ref.wr_en         Y
+     this.full_ref         Y
+    this.empty_ref         Y
+
+    Rows:   Hits(->0)   Hits(->1)  FEC Target            Non-masking condition(s)                                                                                               
+
+---------  ----------  ----------  --------------------  -------------------------                                                                                              
+ Row   1:           0           1  F_ref.rd_en_0         (F_ref.wr_en && ~this.full_ref), (~(~F_ref.rd_en && F_ref.wr_en && ~this.full_ref) && F_ref.wr_en)                     
+ Row   2:           1           1  F_ref.rd_en_1         ~(F_ref.wr_en && F_ref.rd_en && this.empty_ref), (F_ref.wr_en && this.empty_ref)                                       
+ Row   3:           1           0  F_ref.wr_en_0         ~F_ref.rd_en                                                                                                           
+ Row   4:           0           1  F_ref.wr_en_1         (~F_ref.rd_en && ~this.full_ref), (~(~F_ref.rd_en && F_ref.wr_en && ~this.full_ref) && (F_ref.rd_en && this.empty_ref))
+ Row   5:           0           1  this.full_ref_0       (~F_ref.rd_en && F_ref.wr_en)                                                                                          
+ Row   6:           1           0  this.full_ref_1       (~F_ref.rd_en && F_ref.wr_en)                                                                                          
+ Row   7:           1           0  this.empty_ref_0      (F_ref.wr_en && F_ref.rd_en)                                                                                           
+ Row   8:           0           1  this.empty_ref_1      (F_ref.wr_en && F_ref.rd_en)                                                                                           
+
+-----------Focused Condition View (Bimodal)--------------
+Line       81 Item    1  ((F_ref.rd_en && ~F_ref.wr_en && ~this.empty_ref) || (F_ref.wr_en && F_ref.rd_en && this.full_ref))
+Condition totals: 3 of 4 input terms covered = 75.00%
+
+        Input Term   Covered  Reason for no coverage                  Hint
+       -----------  --------  --------------------------------------  --------------
+       F_ref.rd_en         Y
+       F_ref.wr_en         Y
+    this.empty_ref         N  '_0' hit but '_1' is not hit           Hit '_1' for output ->0
+     this.full_ref         Y
+
+    Rows:   Hits(->0)   Hits(->1)  FEC Target            Non-masking condition(s)                                                                       
+
+---------  ----------  ----------  --------------------  -------------------------                                                                      
+ Row   1:           1           0  F_ref.rd_en_0         F_ref.wr_en                                                                                    
+ Row   2:           0           1  F_ref.rd_en_1         (~F_ref.wr_en && ~this.empty_ref), (F_ref.wr_en && this.full_ref)                              
+ Row   3:           1           1  F_ref.wr_en_0         (F_ref.rd_en && ~this.empty_ref), ~(F_ref.rd_en && ~F_ref.wr_en && ~this.empty_ref)            
+ Row   4:           1           0  F_ref.wr_en_1         (~(F_ref.wr_en && F_ref.rd_en && this.full_ref) && F_ref.rd_en), (F_ref.rd_en && this.full_ref)
+ Row   5:           0           1  this.empty_ref_0      (F_ref.rd_en && ~F_ref.wr_en)                                                                  
+ Row   6:           0           0  this.empty_ref_1      (F_ref.rd_en && ~F_ref.wr_en)                                                                  
+ Row   7:           1           0  this.full_ref_0       (F_ref.wr_en && F_ref.rd_en)                                                                   
+ Row   8:           0           1  this.full_ref_1       (F_ref.wr_en && F_ref.rd_en)                                                                   
+
+----------------Focused Condition View-------------------
+Line       87 Item    1  (this.count_ref == 8)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (this.count_ref == 8)         Y
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (this.count_ref == 8)_0  -                             
+  Row   2:          1  (this.count_ref == 8)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       88 Item    1  (this.count_ref == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (this.count_ref == 0)         Y
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (this.count_ref == 0)_0  -                             
+  Row   2:          1  (this.count_ref == 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       89 Item    1  (this.count_ref == (8 - 1))
+Condition totals: 1 of 1 input term covered = 100.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (this.count_ref == (8 - 1))         Y
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (this.count_ref == (8 - 1))_0  -                             
+  Row   2:          1  (this.count_ref == (8 - 1))_1  -                             
+
+----------------Focused Condition View-------------------
+Line       90 Item    1  (this.count_ref == 1)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+  (this.count_ref == 1)         Y
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (this.count_ref == 1)_0  -                             
+  Row   2:          1  (this.count_ref == 1)_1  -                             
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      28        24         4    85.71%
+
+================================Statement Details================================
+
+Statement Coverage for instance /FIFO_scoreboard_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_scoreboard.sv
+    1                                                package FIFO_scoreboard_pkg;
+    2                                                
+    3                                                	import FIFO_transaction_pkg::*;
+    4                                                	import shared_pkg::*;
+    5                                                
+    6                                                	class FIFO_scoreboard;
+    7                                                			
+    8                                                		parameter FIFO_WIDTH = 16; 
+    9                                                		parameter FIFO_DEPTH = 8;
+    10                                               
+    11                                               		localparam max_fifo_addr = $clog2(FIFO_DEPTH);
+    12                                               
+    13                                               		logic [FIFO_WIDTH-1:0] data_out_ref;
+    14                                               		logic wr_ack_ref, overflow_ref;
+    15                                               		logic full_ref, empty_ref, almostfull_ref, almostempty_ref, underflow_ref;
+    16                                               
+    17                                               		logic [max_fifo_addr-1:0] rd_ptr_ref, wr_ptr_ref;
+    18                                               		logic [max_fifo_addr:0] count_ref;
+    19                                               
+    20                                               		logic [FIFO_WIDTH-1:0] mem_ref [FIFO_DEPTH-1:0];
+    21                                               
+    22                                               		function void check_data(FIFO_transaction F_chk);
+    23              1                      20001     			reference_model(F_chk);
+    24                                               
+    25                                               			if(data_out_ref !== F_chk.data_out || wr_ack_ref !== F_chk.wr_ack || overflow_ref !== F_chk.overflow || underflow_ref !== F_chk.underflow 
+    26                                               			  || full_ref !== F_chk.full || empty_ref !== F_chk.empty || almostfull_ref !== F_chk.almostfull || almostempty_ref !== F_chk.almostempty)  begin
+    27                                               				
+    28              1                    ***0***     				error_count++;
+    29              1                    ***0***     				$display("%t Error - Error - Error", $time);
+    30              1                    ***0***     				$display("actual data_out: %0b but the required : %0b, actual wr_ack: %0b but the required : %0b, actual overflow: %0b but the required : %0b, actual underflow: %0b but the required : %0b",
+    31                                               					     F_chk.data_out, data_out_ref, F_chk.wr_ack, wr_ack_ref, F_chk.overflow, overflow_ref, F_chk.underflow, underflow_ref);
+    32              1                    ***0***     				$display("actual full: %0b but the required : %0b, actual empty: %0b but the required : %0b, actual almostfull: %0b but the required : %0b, actual almostempty: %0b but the required : %0b",
+    33                                               					     F_chk.full, full_ref, F_chk.empty, empty_ref, F_chk.almostfull, almostfull_ref, F_chk.almostempty, almostempty_ref);
+    34                                               
+    35                                               			end
+    36                                               			else begin
+    37              1                      20001     				correct_count++;
+    38                                               			end
+    39                                               
+    40                                               		endfunction 
+    41                                               
+    42                                               		function void reference_model(FIFO_transaction F_ref);
+    43                                               
+    44                                               			if (!F_ref.rst_n) begin
+    45              1                          1     				wr_ack_ref = 0; rd_ptr_ref = 0; wr_ptr_ref = 0; count_ref = 0;
+    45              2                          1     
+    45              3                          1     
+    45              4                          1     
+    46              1                          1     				overflow_ref = 0; underflow_ref = 0;
+    46              2                          1     
+    47                                               			end
+    48                                               			else begin
+    49                                               
+    50                                               				if(F_ref.wr_en && count_ref < F_ref.FIFO_DEPTH)  begin
+    51              1                       6016     					mem_ref[wr_ptr_ref] = F_ref.data_in;
+    52              1                       6016     					wr_ack_ref = 1;
+    53              1                       6016     					wr_ptr_ref = wr_ptr_ref + 1;
+    54                                               				end
+    55                                               				else begin
+    56              1                      13984     					wr_ack_ref = 0;
+    57                                               				end 
+    58                                               
+    59                                               				if (full_ref && F_ref.wr_en && F_ref.rst_n)
+    60              1                       7950     					overflow_ref = 1;
+    61                                               				else
+    62              1                      12050     					overflow_ref = 0;
+    63                                               
+    64                                               
+    65                                               
+    66                                               				if(F_ref.rd_en && count_ref != 0)  begin 
+    67              1                       6008     					data_out_ref = mem_ref[rd_ptr_ref];                                                       
+    68              1                       6008     					rd_ptr_ref   = rd_ptr_ref + 1;
+    69                                               				end
+    70                                               
+    71                                               				if (F_ref.rd_en && empty_ref && F_ref.rst_n)  
+    72              1                          1     					underflow_ref = 1;
+    73                                               				else 
+    74              1                      19999     					underflow_ref = 0;
+    75                                               
+    76                                               
+    77                                               
+    78                                               				if( ( ({F_ref.wr_en, F_ref.rd_en} == 2'b10) && (!full_ref) ) || (F_ref.wr_en && F_ref.rd_en && empty_ref) ) begin
+    79              1                       4144     					count_ref = count_ref + 1;
+    80                                               				end 
+    81                                               				else if( ( ({F_ref.wr_en, F_ref.rd_en} == 2'b01) && (!empty_ref) ) || (F_ref.wr_en && F_ref.rd_en && full_ref) ) begin
+    82              1                       4136     					count_ref = count_ref - 1;
+    83                                               				end 
+    84                                               
+    85                                               			end
+    86                                               
+    87              1                      20001     			full_ref        = (count_ref == F_ref.FIFO_DEPTH)? 1 : 0;
+    88              1                      20001     			empty_ref       = (count_ref == 0)? 1 : 0;
+    89              1                      20001     			almostfull_ref  = (count_ref == F_ref.FIFO_DEPTH-1)? 1 : 0;
+    90              1                      20001     		    almostempty_ref = (count_ref == 1)? 1 : 0;
+
+
+=================================================================================
+=== Instance: /FIFO_coverage_pkg
+=== Design Unit: work.FIFO_coverage_pkg
+=================================================================================
+
+Covergroup Coverage:
+    Covergroups                      1        na        na    89.06%
+        Coverpoints/Crosses         16        na        na        na
+            Covergroup Bins         74        60        14    81.08%
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /FIFO_coverage_pkg/FIFO_coverage/fifo_cg         89.06%        100          -    Uncovered            
+    covered/total bins:                                    60         74          -                      
+    missing/total bins:                                    14         74          -                      
+    % Hit:                                             81.08%        100          -                      
+    Coverpoint wr_en                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                      6035          1          -    Covered              
+        bin auto[1]                                     13966          1          -    Covered              
+    Coverpoint rd_en                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     13991          1          -    Covered              
+        bin auto[1]                                      6010          1          -    Covered              
+    Coverpoint full                                   100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                      8585          1          -    Covered              
+        bin auto[1]                                     11416          1          -    Covered              
+    Coverpoint empty                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     20000          1          -    Covered              
+        bin auto[1]                                         1          1          -    Covered              
+    Coverpoint almostfull                             100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     12996          1          -    Covered              
+        bin auto[1]                                      7005          1          -    Covered              
+    Coverpoint almostempty                            100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     19999          1          -    Covered              
+        bin auto[1]                                         2          1          -    Covered              
+    Coverpoint overflow                               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     12051          1          -    Covered              
+        bin auto[1]                                      7950          1          -    Covered              
+    Coverpoint underflow                              100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     20000          1          -    Covered              
+        bin auto[1]                                         1          1          -    Covered              
+    Coverpoint wr_ack                                 100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     13985          1          -    Covered              
+        bin auto[1]                                      6016          1          -    Covered              
+    Cross en_with_full                                 75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[0],auto[1]>                8974          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                2442          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4241          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                 751          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                1824          1          -    Covered              
+            bin <*,auto[1],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_empty                                62.50%        100          -    Uncovered            
+        covered/total bins:                                 5          8          -                      
+        missing/total bins:                                 3          8          -                      
+        % Hit:                                         62.50%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[0],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4241          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1768          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[1],*,auto[1]>                         0          1          2    ZERO                 
+            bin <*,auto[0],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_almostfull                          100.00%        100          -    Covered              
+        covered/total bins:                                 8          8          -                      
+        missing/total bins:                                 0          8          -                      
+        % Hit:                                        100.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                3889          1          -    Covered              
+            bin <auto[0],auto[1],auto[1]>                1023          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                 610          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                1483          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                 352          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                 746          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9115          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                2783          1          -    Covered              
+    Cross en_with_almostempty                          75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4240          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4265          1          -    Covered              
+            bin <auto[0],auto[1],auto[1]>                   0          1          1    ZERO                 
+            bin <auto[1],auto[0],auto[1]>                   0          1          1    ZERO                 
+    Cross en_with_overflow                             75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                2368          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                5582          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                1873          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                4143          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_underflow                            62.50%        100          -    Uncovered            
+        covered/total bins:                                 5          8          -                      
+        missing/total bins:                                 3          8          -                      
+        % Hit:                                         62.50%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4240          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+            bin <*,auto[0],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_wr_ack                               75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                1873          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                4143          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                2368          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                5582          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       3         3         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /FIFO_coverage_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File FIFO_coverage.sv
+    1                                                package FIFO_coverage_pkg;
+    2                                                
+    3                                                	import FIFO_transaction_pkg::*;
+    4                                                
+    5                                                	class FIFO_coverage;
+    6                                                
+    7                                                		FIFO_transaction F_cvg_txn;
+    8                                                
+    9                                                		covergroup fifo_cg;
+    10                                               
+    11                                               			wr_en: coverpoint F_cvg_txn.wr_en{option.weight = 0;}  rd_en: coverpoint F_cvg_txn.rd_en{option.weight = 0;}  
+    12                                               			full : coverpoint F_cvg_txn.full {option.weight = 0;}  empty: coverpoint F_cvg_txn.empty{option.weight = 0;}
+    13                                               			almostfull: coverpoint F_cvg_txn.almostfull{option.weight = 0;} almostempty: coverpoint F_cvg_txn.almostempty{option.weight = 0;}
+    14                                               			overflow  : coverpoint F_cvg_txn.overflow  {option.weight = 0;} underflow  : coverpoint F_cvg_txn.underflow  {option.weight = 0;}
+    15                                               			wr_ack: coverpoint F_cvg_txn.wr_ack{option.weight = 0;}
+    16                                               			
+    17                                               			en_with_full       : cross wr_en, rd_en, full;
+    18                                               			en_with_empty      : cross wr_en, rd_en, empty;
+    19                                               			en_with_almostfull : cross wr_en, rd_en, almostfull;
+    20                                               			en_with_almostempty: cross wr_en, rd_en, almostempty;
+    21                                               			en_with_overflow   : cross wr_en, rd_en, overflow;
+    22                                               			en_with_underflow  : cross wr_en, rd_en, underflow;
+    23                                               			en_with_wr_ack     : cross wr_en, rd_en, wr_ack;
+    24                                               			
+    25                                               		endgroup
+    26                                               
+    27                                               		function new();
+    28              1                          1     			fifo_cg = new();
+    29                                               		endfunction
+    30                                               
+    31                                               		function void sample_data(FIFO_transaction F_txn);
+    32              1                      20001     			F_cvg_txn = F_txn;
+    33              1                      20001     			fifo_cg.sample();
+
+
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /FIFO_coverage_pkg/FIFO_coverage/fifo_cg         89.06%        100          -    Uncovered            
+    covered/total bins:                                    60         74          -                      
+    missing/total bins:                                    14         74          -                      
+    % Hit:                                             81.08%        100          -                      
+    Coverpoint wr_en                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                      6035          1          -    Covered              
+        bin auto[1]                                     13966          1          -    Covered              
+    Coverpoint rd_en                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     13991          1          -    Covered              
+        bin auto[1]                                      6010          1          -    Covered              
+    Coverpoint full                                   100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                      8585          1          -    Covered              
+        bin auto[1]                                     11416          1          -    Covered              
+    Coverpoint empty                                  100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     20000          1          -    Covered              
+        bin auto[1]                                         1          1          -    Covered              
+    Coverpoint almostfull                             100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     12996          1          -    Covered              
+        bin auto[1]                                      7005          1          -    Covered              
+    Coverpoint almostempty                            100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     19999          1          -    Covered              
+        bin auto[1]                                         2          1          -    Covered              
+    Coverpoint overflow                               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     12051          1          -    Covered              
+        bin auto[1]                                      7950          1          -    Covered              
+    Coverpoint underflow                              100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     20000          1          -    Covered              
+        bin auto[1]                                         1          1          -    Covered              
+    Coverpoint wr_ack                                 100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                     13985          1          -    Covered              
+        bin auto[1]                                      6016          1          -    Covered              
+    Cross en_with_full                                 75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[0],auto[1]>                8974          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                2442          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4241          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                 751          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                1824          1          -    Covered              
+            bin <*,auto[1],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_empty                                62.50%        100          -    Uncovered            
+        covered/total bins:                                 5          8          -                      
+        missing/total bins:                                 3          8          -                      
+        % Hit:                                         62.50%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[0],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4241          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1768          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[1],*,auto[1]>                         0          1          2    ZERO                 
+            bin <*,auto[0],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_almostfull                          100.00%        100          -    Covered              
+        covered/total bins:                                 8          8          -                      
+        missing/total bins:                                 0          8          -                      
+        % Hit:                                        100.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                3889          1          -    Covered              
+            bin <auto[0],auto[1],auto[1]>                1023          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                 610          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                1483          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                 352          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                 746          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9115          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                2783          1          -    Covered              
+    Cross en_with_almostempty                          75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[0],auto[0],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4240          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4265          1          -    Covered              
+            bin <auto[0],auto[1],auto[1]>                   0          1          1    ZERO                 
+            bin <auto[1],auto[0],auto[1]>                   0          1          1    ZERO                 
+    Cross en_with_overflow                             75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                2368          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                5582          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                1873          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                4143          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_underflow                            62.50%        100          -    Uncovered            
+        covered/total bins:                                 5          8          -                      
+        missing/total bins:                                 3          8          -                      
+        % Hit:                                         62.50%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                   1          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                4240          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                9725          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+            bin <*,auto[0],auto[1]>                         0          1          2    ZERO                 
+    Cross en_with_wr_ack                               75.00%        100          -    Uncovered            
+        covered/total bins:                                 6          8          -                      
+        missing/total bins:                                 2          8          -                      
+        % Hit:                                         75.00%        100          -                      
+        Auto, Default and User Defined Bins:
+            bin <auto[1],auto[1],auto[1]>                1873          1          -    Covered              
+            bin <auto[1],auto[0],auto[1]>                4143          1          -    Covered              
+            bin <auto[1],auto[1],auto[0]>                2368          1          -    Covered              
+            bin <auto[0],auto[1],auto[0]>                1769          1          -    Covered              
+            bin <auto[1],auto[0],auto[0]>                5582          1          -    Covered              
+            bin <auto[0],auto[0],auto[0]>                4266          1          -    Covered              
+            bin <auto[0],*,auto[1]>                         0          1          2    ZERO                 
+
+TOTAL COVERGROUP COVERAGE: 89.06%  COVERGROUP TYPES: 1
+
+DIRECTIVE COVERAGE:
+--------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Hits Status    
+                                         Unit   UnitType                                     
+--------------------------------------------------------------------------------------------
+/top/f1/cover__pr11                      FIFO   Verilog  SVA  FIFO.sv(138)       2 Covered   
+/top/f1/cover__pr10                      FIFO   Verilog  SVA  FIFO.sv(138)    7005 Covered   
+/top/f1/cover__pr9                       FIFO   Verilog  SVA  FIFO.sv(138)       2 Covered   
+/top/f1/cover__pr8                       FIFO   Verilog  SVA  FIFO.sv(138)    11415 Covered   
+/top/f1/cover__pr7                       FIFO   Verilog  SVA  FIFO.sv(137)    6008 Covered   
+/top/f1/cover__pr6                       FIFO   Verilog  SVA  FIFO.sv(137)    6015 Covered   
+/top/f1/cover__pr5                       FIFO   Verilog  SVA  FIFO.sv(137)    6015 Covered   
+/top/f1/cover__pr4                       FIFO   Verilog  SVA  FIFO.sv(137)    7950 Covered   
+/top/f1/cover__pr3                       FIFO   Verilog  SVA  FIFO.sv(137)       1 Covered   
+/top/f1/cover__pr2                       FIFO   Verilog  SVA  FIFO.sv(137)    4136 Covered   
+/top/f1/cover__pr1                       FIFO   Verilog  SVA  FIFO.sv(137)    4143 Covered   
+
+TOTAL DIRECTIVE COVERAGE: 100.00%  COVERS: 11
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/top/f1/reset_assert FIFO.sv(80)                        0          1
+/top/f1/count_increment_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/count_decrement_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/underflow_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/overflow_assert
+                     FIFO.sv(133)                       0          1
+/top/f1/wr_ack_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/wr_ptr_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/rd_ptr_assert
+                     FIFO.sv(134)                       0          1
+/top/f1/full_assert  FIFO.sv(134)                       0          1
+/top/f1/empty_assert FIFO.sv(135)                       0          1
+/top/f1/almostfull_assert
+                     FIFO.sv(135)                       0          1
+/top/f1/almostempty_assert
+                     FIFO.sv(135)                       0          1
+/top/tb1/#ublk#182146786#17/immed__19
+                     FIFO_tb.sv(19)                     0          1
+
+Total Coverage By Instance (filtered view): 93.77%
+
